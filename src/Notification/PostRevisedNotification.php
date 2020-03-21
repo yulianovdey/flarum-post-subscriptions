@@ -5,12 +5,13 @@ namespace PoweredByStuff\FlarumPostSubscriptions\Notification;
 use Flarum\Post\Post;
 use Flarum\User\User;
 use Flarum\Notification\Blueprint\BlueprintInterface;
+use Flarum\Notification\MailableInterface;
 
-class PostRevisedNotification implements BlueprintInterface
+class PostRevisedNotification implements BlueprintInterface, MailableInterface
 {
-    protected $post;
+    public $post;
 
-    protected $user;
+    public $user;
 
     public function __construct(Post $post, User $user)
     {
@@ -41,5 +42,15 @@ class PostRevisedNotification implements BlueprintInterface
     public static function getSubjectModel()
     {
         return Post::class;
+    }
+
+    public function getEmailView()
+    {
+        return ['text' => 'flarum-post-subscriptions::emails.postRevised'];
+    }
+
+    public function getEmailSubject()
+    {
+        return '[Post Updated] '.$this->post->discussion->title;
     }
 }
