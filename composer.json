@@ -9,6 +9,9 @@
         "psr-4": {"PoweredByStuff\\FlarumPostSubscriptions\\": "src/"}
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        },
         "flarum-extension": {
             "title": "Post Subscriptions",
             "icon": {
