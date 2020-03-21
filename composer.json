@@ -12,9 +12,9 @@
         "flarum-extension": {
             "title": "Post Subscriptions",
             "icon": {
-                "name": "fas fa-smile",
-                "backgroundColor": "#238c59",
-                "color": "#fff"
+                "name": "fas fa-star",
+                "backgroundColor": "#ffea7b",
+                "color": "#de8e00"
             }
         }
     }
