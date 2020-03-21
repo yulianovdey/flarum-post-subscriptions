@@ -6,7 +6,7 @@ use PoweredByStuff\FlarumPostSubscriptions\Notification;
 use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Event\ConfigureNotificationTypes;
 use Flarum\Api\Serializer\PostSerializer;
-use Flarum\Post\Event\Saving as PostSaving;
+use Flarum\Post\Event\Revised as PostRevised;
 
 return [
     (new Extend\Frontend('forum'))
@@ -17,9 +17,9 @@ return [
         $events->subscribe(Listener\SaveSubscriptionsToDatabase::class);
 
         $events->listen(ConfigureNotificationTypes::class, function (ConfigureNotificationTypes $event) {
-            $event->add(Notification\PostUpdatedNotification::class, PostSerializer::class, ['alert']);
+            $event->add(Notification\PostRevisedNotification::class, PostSerializer::class, ['alert']);
         });
 
-        $events->listen(PostSaving::class, Listener\SendPostUpdatedNotification::class);
+        $events->listen(PostRevised::class, Listener\SendPostRevisedNotification::class);
     },
 ];

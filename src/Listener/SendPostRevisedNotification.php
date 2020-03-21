@@ -2,12 +2,12 @@
 
 namespace PoweredByStuff\FlarumPostSubscriptions\Listener;
 
-use Flarum\Post\Event\Saving;
-use PoweredByStuff\FlarumPostSubscriptions\Notification\PostUpdatedNotification;
+use Flarum\Post\Event\Revised;
+use PoweredByStuff\FlarumPostSubscriptions\Notification\PostRevisedNotification;
 use Flarum\Notification\NotificationSyncer;
 use PoweredByStuff\FlarumPostSubscriptions\Post\UserState;
 
-class SendPostUpdatedNotification
+class SendPostRevisedNotification
 {
     protected $notifications;
 
@@ -16,18 +16,22 @@ class SendPostUpdatedNotification
         $this->notifications = $notifications;
     }
 
-    public function handle(Saving $event)
+    public function handle(Revised $event)
     {
         $post = $event->post;
 
-        $subscriptions = $event->post->hasMany(UserState::class, 'post_id')
+        if (!$post->user) {
+            return;
+        }
+
+        $subscriptions = $post->hasMany(UserState::class, 'post_id')
                 ->where('user_id', '<>', $event->actor->id)
                 ->where('subscription', 'follow')
                 ->with('user')
                 ->get();
 
         $this->notifications->sync(
-            new PostUpdatedNotification($event->post, $event->post->user),
+            new PostRevisedNotification($post, $post->user),
             $subscriptions->pluck('user')->all()
         );
     }

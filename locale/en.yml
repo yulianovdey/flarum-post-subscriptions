@@ -5,7 +5,7 @@ flarum-post-subscriptions:
       unsubscribe_link: Unfollow
       subscribed_indicator: Following
     settings:
-      notify_post_updated_label: Someone updates a post I'm following
+      notify_post_revised_label: Someone updates a post I'm following
     notifications:
-      post_updated_text: "{username} updated post"
+      post_revised_text: "{username} updated post"
 

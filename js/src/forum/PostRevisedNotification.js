@@ -1,7 +1,7 @@
 import Notification from 'flarum/components/Notification';
 import { truncate } from 'flarum/utils/string';
 
-export default class PostUpdatedNotification extends Notification {
+export default class PostRevisedNotification extends Notification {
   icon() {
     return 'far fa-star';
   }
@@ -12,7 +12,7 @@ export default class PostUpdatedNotification extends Notification {
 
   content() {
     return app.translator.trans(
-      'flarum-post-subscriptions.forum.notifications.post_updated_text',
+      'flarum-post-subscriptions.forum.notifications.post_revised_text',
       { user: this.props.notification.fromUser() }
     );
   }

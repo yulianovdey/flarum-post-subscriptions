@@ -6,7 +6,7 @@ use Flarum\Post\Post;
 use Flarum\User\User;
 use Flarum\Notification\Blueprint\BlueprintInterface;
 
-class PostUpdatedNotification implements BlueprintInterface
+class PostRevisedNotification implements BlueprintInterface
 {
     protected $post;
 
@@ -30,7 +30,7 @@ class PostUpdatedNotification implements BlueprintInterface
 
     public static function getType()
     {
-        return 'postUpdated';
+        return 'postRevised';
     }
 
     public function getFromUser()
