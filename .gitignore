@@ -229,5 +229,4 @@ npm-debug.log
 #############
 
 .env
-package-lock.json*
 js/dist
