@@ -1,0 +1,6 @@
+flarum-post-subscriptions:
+  forum:
+    post:
+      subscribe_link: "Follow"
+      unsubscribe_link: "Unfollow"
+      subscribed_indicator: "Following"
