@@ -11,12 +11,12 @@ class PostRevisedNotification implements BlueprintInterface, MailableInterface
 {
     public $post;
 
-    public $user;
+    public $actor;
 
-    public function __construct(Post $post, User $user)
+    public function __construct(Post $post, User $actor)
     {
         $this->post = $post;
-        $this->user = $user;
+        $this->actor = $actor;
     }
 
     public function getSubject()
@@ -36,7 +36,7 @@ class PostRevisedNotification implements BlueprintInterface, MailableInterface
 
     public function getFromUser()
     {
-        return $this->user;
+        return $this->actor;
     }
 
     public static function getSubjectModel()

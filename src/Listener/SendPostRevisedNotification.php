@@ -31,7 +31,7 @@ class SendPostRevisedNotification
                 ->get();
 
         $this->notifications->sync(
-            new PostRevisedNotification($post, $post->user),
+            new PostRevisedNotification($post, $event->actor),
             $subscriptions->pluck('user')->all()
         );
     }

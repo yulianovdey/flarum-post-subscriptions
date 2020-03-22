@@ -7,7 +7,7 @@ export default function() {
   extend(CommentPost.prototype, 'actionItems', function(items) {
     const post = this.props.post;
 
-    if (post.isHidden() || !app.session.user || post.user().id() === app.session.user.id()) return;
+    if (post.isHidden() || !app.session.user) return;
 
     let isSubscribed = post.subscription() === 'follow';
 
